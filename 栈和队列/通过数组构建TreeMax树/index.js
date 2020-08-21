@@ -4,7 +4,7 @@
  * 2.TreeMax 是一棵二叉树，数组的每一个数对应一个二叉树的节点
  * 3.包括 TreeMax 在内的每一棵子树，值最大的节点都是头节点
  */
-let myTree = (data) => {
+function myTree(data) {
   this.data = data
   this.left = null
   this.right = null
@@ -43,3 +43,8 @@ let getMaxTree = (arr) => {
   })
   return createTree(arr)
 }
+
+// test
+const arr = [3, 4, 5, 1, 2, 6, 8, 7]
+const res = getMaxTree(arr)
+console.log('res', res)

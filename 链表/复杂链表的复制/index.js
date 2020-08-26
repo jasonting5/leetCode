@@ -33,3 +33,40 @@ let copyRandomList = (head) => {
   }
   return map.get(head)
 }
+
+/**
+ * 进阶解法 1->1'->2->2'->3->3'
+ * 但是js执行用时更久
+ */
+let copyRandomListUp = (head) => {
+  if (!head) return null
+  // 复制副节点
+  let cur = head,
+    next = null,
+    copyNode = null
+  while (cur) {
+    next = cur.next
+    cur.next = new Node(cur.val)
+    cur.next.next = next
+    cur = next
+  }
+  // 设置每个副节点的random属性
+  cur = head
+  while (cur) {
+    next = cur.next.next
+    copyNode = cur.next
+    copyNode.random = cur.random ? cur.random.next : null
+    cur = next
+  }
+  // 拆分
+  cur = head
+  let res = head.next
+  while (cur) {
+    next = cur.next.next
+    copyNode = cur.next
+    cur.next = next
+    copyNode.next = next ? next.next : null
+    cur = next
+  }
+  return res
+}
